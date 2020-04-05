@@ -20,13 +20,17 @@ import {
   MDBInput,
   MDBBtn,
   MDBIcon,
+  MDBView,
+  MDBMask,
+  MDBCard,
+  MDBCardBody,
 } from "mdbreact";
 
 //> Components
 // To be added here
 
 //> CSS
-// To be added here
+import "./loginpage.scss";
 
 //> Images
 import IMGlogo from "../../../assets/agency-small.png";
@@ -45,7 +49,6 @@ class LoginPage extends React.Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-
     this._loginUser();
   };
 
@@ -98,49 +101,59 @@ class LoginPage extends React.Component {
     }
 
     return (
-      <MDBContainer id="login" className="text-center pt-5 mt-5">
-        <img src={IMGlogo} style={{maxWidth: "100%", maxHeight: "150px"}} alt="SithCult logo" className="img-fluid" />
-        <form onSubmit={this.submitHandler}>
+      <MDBView id="login" className="flex-center">
+        <MDBMask overlay="indigo-strong" />
+        <MDBContainer>
           <MDBRow className="flex-center">
-            <MDBCol md="4">
-              {authErrorDetails && (
-                <MDBAlert color="danger">
-                  The password is invalid or the user does not exist.
-                </MDBAlert>
-              )}
-              <input
-                value={this.state.email}
-                onChange={this.changeHandler}
-                type="email"
-                placeholder="E-Mail"
-                id="materialFormRegisterConfirmEx2"
-                name="email"
-                className="form-control my-3"
-                label="Your email"
-                required
-              />
-            </MDBCol>
-            <MDBCol md="12"></MDBCol>
-            <MDBCol md="4">
-              <input
-                value={this.state.password}
-                onChange={this.changeHandler}
-                type="password"
-                id="materialFormRegisterConfirmEx4"
-                className="form-control mb-3"
-                placeholder="Passwort"
-                name="password"
-                label="Password"
-                required
-              />
+            <MDBCol md="6" xl="5" className="mb-4">
+              <MDBCard className="dark-grey-text">
+                <MDBCardBody className="z-depth-2 text-center">
+                  <h3 className="dark-grey-text text-center">
+                    <strong>Kundenportal</strong>
+                  </h3>
+                  <hr />
+                  <form onSubmit={this.submitHandler}>
+                    {authErrorDetails && (
+                      <MDBAlert color="danger">
+                        Das Passwort ist ungültig oder der Benutzer existiert nicht.
+                      </MDBAlert>
+                    )}
+                    <input
+                      value={this.state.email}
+                      onChange={this.changeHandler}
+                      type="email"
+                      placeholder="E-Mail"
+                      id="materialFormRegisterConfirmEx2"
+                      name="email"
+                      className="form-control my-3"
+                      required
+                    />
+                    <input
+                      value={this.state.password}
+                      onChange={this.changeHandler}
+                      type="password"
+                      id="materialFormRegisterConfirmEx4"
+                      className="form-control mb-1"
+                      placeholder="Kennwort"
+                      name="password"
+                      required
+                    />
+                    <div className="text-right mb-3">
+                      <span className="clickable text-muted">
+                        Passwort vergessen
+                      </span>
+                    </div>
+                    <MDBBtn color="indigo" type="submit">
+                      <MDBIcon icon="angle-right" />
+                      login
+                    </MDBBtn>
+                  </form>
+                </MDBCardBody>
+              </MDBCard>
             </MDBCol>
           </MDBRow>
-          <MDBBtn color="orange" type="submit">
-            <MDBIcon icon="angle-right" />
-            Login
-          </MDBBtn>
-        </form>
-      </MDBContainer>
+        </MDBContainer>
+      </MDBView>
     );
   }
 }

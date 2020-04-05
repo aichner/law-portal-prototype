@@ -85,7 +85,7 @@ class Footer extends React.Component {
                   className="ml-1"
                   rel="noopener noreferrer"
                 >
-                  us
+                  Werbeagentur Christian Aichner
                 </a>
                 .
               </p>
